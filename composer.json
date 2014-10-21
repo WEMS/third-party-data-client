@@ -1,0 +1,16 @@
+{
+    "name": "wems/third-party-data",
+    "version": "0.1.0",
+    "homepage": "https://github.com/WEMS",
+    "type": "library",
+    "require": {
+        "php": ">=5.3.3",
+        "ext-curl": "*",
+        "guzzle/guzzle": "3.9.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wems\\Api\\ThirdPartyData\\": "src/"
+        }
+    }
+}
