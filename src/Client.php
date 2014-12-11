@@ -13,6 +13,9 @@ class Client
     /** @var string */
     protected $object;
 
+    /** @var bool */
+    protected $dryRun;
+
     /** @var DataRow[] */
     protected $data;
 
@@ -76,6 +79,20 @@ class Client
     }
 
     /**
+     * Dry run puts the API in testing mode. It will go through the motions but not commit any data.
+     *
+     * @param bool $dryRun
+     *
+     * @return $this
+     */
+    final public function setDryRun($dryRun)
+    {
+        $this->dryRun = $dryRun;
+
+        return $this;
+    }
+
+    /**
      * @param int   $timestamp
      * @param mixed $value
      *
@@ -105,10 +122,16 @@ class Client
      */
     final protected function getPost()
     {
-        return json_encode(array(
+        $post = array(
             'object' => $this->object,
             'data'   => $this->getData(),
-        ));
+        );
+
+        if ($this->dryRun) {
+            $post['dryRun'] = true;
+        }
+
+        return json_encode($post);
     }
 
     /**

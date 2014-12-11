@@ -14,6 +14,9 @@ $wemsClient->addData(strtotime('2014-01-01 00:00:00'), 42);
 $wemsClient->addData(strtotime('2014-01-01 00:30:00'), 21);
 $wemsClient->addData(strtotime('2014-01-01 01:00:00'), 57);
 
+// if we're in test mode -
+// $wemsClient->setDryRun(true);
+
 $res = $wemsClient->send();
 
 print_r($res->getStatusCode());
